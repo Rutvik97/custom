@@ -18,6 +18,7 @@ address_pattern = [
 matcher = Matcher(nlp.vocab)
 matcher.add("ADDRESS", [address_pattern])
 
+
 def extract_entities(sentence):
     doc = nlp(sentence)
 
@@ -35,7 +36,7 @@ def extract_entities(sentence):
         "emails": emails
     }
 
-# Example usage:
+
 def process_sentence(new_sentence):
     results = extract_entities(new_sentence)
 
@@ -52,6 +53,11 @@ def process_sentence(new_sentence):
     for email in results['emails']:
         print(email)
 
-# Usage example:
-sentence_to_process = "John Doe lives at 123 Main Street, New York. Contact him at john.doe@email.com."
-process_sentence(sentence_to_process)
+
+# Continuous input until exit command
+while True:
+    sentence_to_process = input("Enter a sentence (or 'exit' to quit): ")
+    if sentence_to_process.lower() == 'exit':
+        break
+
+    process_sentence(sentence_to_process)
